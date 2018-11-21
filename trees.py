@@ -448,7 +448,8 @@ def count_anagrams(word, count, english_words,prefix=""):
     global dead
     if len(word) <= 1:
         str = prefix + word
-        if english_words.look(str) is not None:    
+        if english_words.look(str) is not None:
+            print(str)
             dead = dead + 1
         
     else:
@@ -481,18 +482,25 @@ if typeTree == 1:
     print(dead)
     print("anagrams")
     i = 0
+    wordl = []
     while i < len(wordList):
+        dead = 0
         greatAna(wordList[i], 0 , tree)
+        wordl.append(wordList[i])
         maxi.append(dead)
         i+=1
     i = 0
     maxl = -1
+    wordw = ""
     while i < len(maxi):
         if maxi[i] > maxi[i+1]:
             maxl = maxi[i]
+            wordw = wordl[i]
         maxl = maxi[i+1]
+        wordw = wordl [i+1]
         i+=2
-    print(maxl)    
+    print(maxl)
+    print(wordw)
 else:
     tree2.storeRB(wordList)
     count_anagrams(userpick, 0,tree2)
@@ -502,6 +510,7 @@ else:
     print("anagrams")
     i = 0 
     while i < len(wordList):
+        dead = 0
         greatAna(wordList, 0 , tree2)
         maxi.append(dead)
         i+=1
